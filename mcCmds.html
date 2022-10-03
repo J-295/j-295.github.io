@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Minecraft Commands</title>
+	<link rel="stylesheet" href="/style.css">
+	<script src="/mcCmds.js"></script>
+</head>
+
+<body>
+	<div class="ribbon">
+		<h1>Minecraft Command Generator</h1>
+	</div>
+
+	<div style="margin: 25px;">
+		<p>Run multiple commands in one command block.<br>Note that the command block will require two-four blocks of free
+			space above.</p>
+		<button class="btn1" onclick="gen()"><b>Generate</b></button>
+		<div id="outDiv" style="margin-bottom: 15px;"></div>
+		<p>Enter one command per line:</p>
+		<textarea id="cmds" rows="20"></textarea>
+	</div>
+</body>
+
+</html>
