@@ -25,30 +25,27 @@ function gen() {
 						BlockState: {
 							Name: "minecraft:activator_rail"
 						},
-						Passengers: []
+						Passengers: [
+							...cmds.map((cmd) => {
+								return {
+									id: "command_block_minecart",
+									Command: cmd
+								}
+							}),
+							{
+								id: "command_block_minecart",
+								Command: "setblock ~ ~1 ~ command_block{auto:1,Command:\"fill ~ ~ ~ ~ ~-2 ~ air\"}"
+							},
+							{
+								id: "minecraft:command_block_minecart",
+								Command: "kill @e[type=command_block_minecart,distance=..1]"
+							}
+						]
 					}
 				]
 			}
 		]
 	}
-
-	for (const cmd of cmds) {
-		json.Passengers[0].Passengers[0].Passengers.push({
-			id: "command_block_minecart",
-			Command: cmd
-		});
-	}
-
-	json.Passengers[0].Passengers[0].Passengers.push(
-		{
-			id: "command_block_minecart",
-			Command: "setblock ~ ~1 ~ command_block{auto:1,Command:\"fill ~ ~ ~ ~ ~-2 ~ air\"}"
-		},
-		{
-			id: "minecraft:command_block_minecart",
-			Command: "kill @e[type=command_block_minecart,distance=..1]"
-		}
-	);
 
 	const cmd = "summon falling_block ~ ~1 ~ " + JSON.stringify(json);
 	navigator.clipboard.writeText(cmd);
