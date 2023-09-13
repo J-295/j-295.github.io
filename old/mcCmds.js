@@ -10,9 +10,32 @@ function gen() {
 		return window.alert("You haven't specified any commands!");
 	}
 
-	const json = {
+	const cmd = "summon minecraft:falling_block ~ ~1 ~ " + JSON.stringify({
 		BlockState: {
-			Name: "minecraft:redstone_block"
+			Name: "minecraft:command_block"
+		},
+		TileEntityData: {
+			Command: "summon minecraft:falling_block ~ ~2 ~ " + JSON.stringify({
+				BlockState: {
+					Name: "minecraft:activator_rail"
+				},
+				Passengers: [
+					...cmds.map((cmd) => {
+						return {
+							id: "command_block_minecart",
+							Command: cmd
+						}
+					}),
+					{
+						id: "command_block_minecart",
+						Command: `setblock ~ ~1 ~ command_block{auto:1,Command:"fill ~ ~ ~ ~ ~-3 ~ air"}`
+					},
+					{
+						id: "minecraft:command_block_minecart",
+						Command: "kill @e[type=command_block_minecart,distance=..1]"
+					}
+				]
+			})
 		},
 		Passengers: [
 			{
@@ -23,31 +46,14 @@ function gen() {
 					{
 						id: "minecraft:falling_block",
 						BlockState: {
-							Name: "minecraft:activator_rail"
-						},
-						Passengers: [
-							...cmds.map((cmd) => {
-								return {
-									id: "command_block_minecart",
-									Command: cmd
-								}
-							}),
-							{
-								id: "command_block_minecart",
-								Command: "setblock ~ ~1 ~ command_block{auto:1,Command:\"fill ~ ~ ~ ~ ~-2 ~ air\"}"
-							},
-							{
-								id: "minecraft:command_block_minecart",
-								Command: "kill @e[type=command_block_minecart,distance=..1]"
-							}
-						]
+							Name: "minecraft:redstone_block"
+						}
 					}
 				]
 			}
 		]
-	}
+	});
 
-	const cmd = "summon falling_block ~ ~1 ~ " + JSON.stringify(json);
 	navigator.clipboard.writeText(cmd);
 	genBtnTxtElement.innerText = "Copied to clipboard!";
 	setTimeout(() => {
