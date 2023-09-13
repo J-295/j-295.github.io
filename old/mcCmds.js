@@ -1,20 +1,16 @@
-function htmlEncode(txt) {
-	return txt
-		.replace(/&/g, "&amp;")
-		.replace(/</g, "&lt;")
-		.replace(/>/g, "&gt;")
-		.replace(/"/g, "&quot;")
-		.replace(/'/g, "&apos;");
-}
+const cmdsElement = document.getElementById("cmds");
+const genBtnTxtElement = document.getElementById("genBtnTxt");
 
 function gen() {
-	const cmdsTxt = document.getElementById("cmds").value;
-	const cmdsArr = cmdsTxt.split("\n");
-	if (cmdsArr.length < 2 || cmdsArr[0].length === 0 || cmdsArr[1].length === 0) {
-		return window.alert("You must input at least two commands!");
+	const cmds = cmdsElement.value
+		.split("\n")
+		.map(l => l.trim())
+		.filter(l => l.length !== 0);
+	if (cmds.length === 0) {
+		return window.alert("You haven't specified any commands!");
 	}
 
-	let json = {
+	const json = {
 		BlockState: {
 			Name: "minecraft:redstone_block"
 		},
@@ -36,11 +32,10 @@ function gen() {
 		]
 	}
 
-	for (let i = 0; i < cmdsArr.length; i++) {
-		if (cmdsArr[i] === "") continue;
+	for (const cmd of cmds) {
 		json.Passengers[0].Passengers[0].Passengers.push({
 			id: "command_block_minecart",
-			Command: cmdsArr[i]
+			Command: cmd
 		});
 	}
 
@@ -56,6 +51,10 @@ function gen() {
 	);
 
 	const cmd = "summon falling_block ~ ~1 ~ " + JSON.stringify(json);
-	document.getElementById("outDiv").innerHTML = (cmd.length > 32500 ? `<p style="color: yellow;">The output is too long to be put into a command block!<p/>` : "")
-		+ `<textarea wrap="off" onclick="this.select()">${htmlEncode(cmd)}</textarea>`;
+	navigator.clipboard.writeText(cmd);
+	genBtnTxtElement.innerText = "Copied to clipboard!";
+	setTimeout(() => {
+		genBtnTxtElement.innerText = "Generate"
+	}, 1000);
+	if (cmd.length > 32500) return window.alert("The command generated is too big to be put in a command block!");
 }
