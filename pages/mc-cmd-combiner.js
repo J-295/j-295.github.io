@@ -57,7 +57,7 @@ function gen() {
 	navigator.clipboard.writeText(cmd);
 	genBtnTxtElement.innerText = "Copied to clipboard!";
 	setTimeout(() => {
-		genBtnTxtElement.innerText = "Generate"
+		genBtnTxtElement.innerText = "Generate";
 	}, 1000);
 	if (cmd.length > 32500) window.alert("The command generated is too big to be put in a command block!");
 }
