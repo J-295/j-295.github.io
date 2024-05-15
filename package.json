@@ -1,7 +1,4 @@
 {
-    "scripts": {
-        "build": "rm -rf docs/; npx tsc; rsync -a --include '*/' --include='*.html' --include='*.css' --exclude='*' src/ docs/"
-    },
     "dependencies": {
         "typescript": "^5.4.5"
     }
