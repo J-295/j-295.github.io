@@ -1,0 +1,8 @@
+{
+    "scripts": {
+        "build": "rm -rf docs/; npx tsc; rsync -a --exclude='*.ts' src/ docs/"
+    },
+    "dependencies": {
+        "typescript": "^5.4.5"
+    }
+}

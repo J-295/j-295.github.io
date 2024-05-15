@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Minecraft Command Combiner</title>
+	<link rel="stylesheet" href="/style.css">
+	<link rel="stylesheet" href="mc-cmd-combiner.css">
+</head>
+
+<body>
+	<div class="ribbon">
+		<h1>Minecraft Command Combiner</h1>
+	</div>
+
+	<div style="margin: 25px;">
+		<p>Run multiple commands in one command block.<br>
+			Note that the command block will require some space above, as this will be used during the execution of commands.</p>
+		<button class="btn1" onclick="gen()"><b id="genBtnTxt">Generate</b></button>
+		<p>Enter one command per line:</p>
+		<textarea id="cmds" rows="20"></textarea>
+	</div>
+
+	<script src="mc-cmd-combiner.js"></script>
+</body>
+
+</html>
