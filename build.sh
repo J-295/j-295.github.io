@@ -2,4 +2,4 @@
 
 rm -rf docs/
 npx tsc
-rsync -a --include '*/' --include='*.html' --include='*.css' --exclude='*' src/ docs/
+rsync -a --exclude='*.ts' src/ docs/

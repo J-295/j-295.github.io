@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scarsz Bin</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .sidenav {
+            height: 100%;
+            width: 180px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #141414;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .sidenav a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            color: #ffffff;
+            display: block;
+        }
+
+        .sidenav a:hover {
+            color: #838383;
+        }
+
+        .content {
+            margin-left: 180px;
+            font-family: monospace;
+            padding: 0px 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidenav" id="sidenav"></div>
+
+    <p class="content" id="content"></p>
+
+    <script src="scarsz-bin.js"></script>
+</body>
+
+</html>

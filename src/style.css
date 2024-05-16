@@ -6,6 +6,9 @@ h1, p {
     color: #ffffff;
 }
 
+a {
+    cursor: pointer;
+}
 a:link {
     color: #24cde3;
 }
