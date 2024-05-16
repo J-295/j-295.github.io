@@ -39,7 +39,7 @@ async function decryptString(b64: string, keyString: string) {
 const binUrlPattern = /^https:\/\/bin\.scarsz\.me\/([0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12})#([a-zA-Z0-9]{32})$/;
 
 const sidenavDiv = document.getElementById("sidenav") as HTMLDivElement;
-const contentParagraph = document.getElementById("content") as HTMLParagraphElement;
+const contentPre = document.getElementById("content") as HTMLPreElement;
 
 (async () => {
     let url = window.prompt("Enter bin.scarsz.me URL") ?? "";
@@ -62,7 +62,7 @@ const contentParagraph = document.getElementById("content") as HTMLParagraphElem
         anchor.textContent = name;
         anchor.onclick = async () => {
             const content = await decryptString(f.content, key);
-            contentParagraph.innerText = content;
+            contentPre.innerText = content;
         }
         sidenavDiv.appendChild(anchor);
     }

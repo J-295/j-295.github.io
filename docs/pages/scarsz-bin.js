@@ -18,7 +18,7 @@ function decryptString(b64, keyString) {
 }
 const binUrlPattern = /^https:\/\/bin\.scarsz\.me\/([0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12})#([a-zA-Z0-9]{32})$/;
 const sidenavDiv = document.getElementById("sidenav");
-const contentParagraph = document.getElementById("content");
+const contentPre = document.getElementById("content");
 (() => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
     let url = (_a = window.prompt("Enter bin.scarsz.me URL")) !== null && _a !== void 0 ? _a : "";
@@ -41,7 +41,7 @@ const contentParagraph = document.getElementById("content");
         anchor.textContent = name;
         anchor.onclick = () => __awaiter(void 0, void 0, void 0, function* () {
             const content = yield decryptString(f.content, key);
-            contentParagraph.innerText = content;
+            contentPre.innerText = content;
         });
         sidenavDiv.appendChild(anchor);
     }
