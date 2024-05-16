@@ -40,14 +40,17 @@ const binUrlPattern = /^https:\/\/bin\.scarsz\.me\/([0-9a-f]{8}(?:-[0-9a-f]{4}){
 
 const sidenavDiv = document.getElementById("sidenav") as HTMLDivElement;
 const contentPre = document.getElementById("content") as HTMLPreElement;
+const binUrlButton = document.getElementById("bin-url-button") as HTMLButtonElement;
+const binUrlInput = document.getElementById("bin-url-input") as HTMLInputElement;
+const binUrlDiv = document.getElementById("bin-url-div") as HTMLDivElement;
 
-(async () => {
-    let url = window.prompt("Enter bin.scarsz.me URL") ?? "";
-    let match;
-    while (!(match = url.match(binUrlPattern))) {
-        url = window.prompt("You did not enter a valid bin.scarsz.me URL. Try again.") ?? "";
-    }
+binUrlButton.onclick = async () => {
+    // get url, extract uuid/key
+    const url = binUrlInput.value;
+    const match = url.match(binUrlPattern);
+    if (!match) return window.alert("Invalid bin.scarsz.me URL!");
     const { [1]: uuid, [2]: key } = match;
+    binUrlDiv.remove();
 
     // fetch bin (using CORS proxy temporarily)
     const res = await fetch("https://corsproxy.io/?" + encodeURIComponent(`https://bin.scarsz.me/v1/${uuid}.json`));
@@ -66,4 +69,4 @@ const contentPre = document.getElementById("content") as HTMLPreElement;
         }
         sidenavDiv.appendChild(anchor);
     }
-})();
+}

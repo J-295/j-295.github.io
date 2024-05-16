@@ -19,14 +19,17 @@ function decryptString(b64, keyString) {
 const binUrlPattern = /^https:\/\/bin\.scarsz\.me\/([0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12})#([a-zA-Z0-9]{32})$/;
 const sidenavDiv = document.getElementById("sidenav");
 const contentPre = document.getElementById("content");
-(() => __awaiter(void 0, void 0, void 0, function* () {
-    var _a, _b;
-    let url = (_a = window.prompt("Enter bin.scarsz.me URL")) !== null && _a !== void 0 ? _a : "";
-    let match;
-    while (!(match = url.match(binUrlPattern))) {
-        url = (_b = window.prompt("You did not enter a valid bin.scarsz.me URL. Try again.")) !== null && _b !== void 0 ? _b : "";
-    }
+const binUrlButton = document.getElementById("bin-url-button");
+const binUrlInput = document.getElementById("bin-url-input");
+const binUrlDiv = document.getElementById("bin-url-div");
+binUrlButton.onclick = () => __awaiter(void 0, void 0, void 0, function* () {
+    // get url, extract uuid/key
+    const url = binUrlInput.value;
+    const match = url.match(binUrlPattern);
+    if (!match)
+        return window.alert("Invalid bin.scarsz.me URL!");
     const { [1]: uuid, [2]: key } = match;
+    binUrlDiv.remove();
     // fetch bin (using CORS proxy temporarily)
     const res = yield fetch("https://corsproxy.io/?" + encodeURIComponent(`https://bin.scarsz.me/v1/${uuid}.json`));
     if (res.status === 404)
@@ -45,4 +48,4 @@ const contentPre = document.getElementById("content");
         });
         sidenavDiv.appendChild(anchor);
     }
-}))();
+});
