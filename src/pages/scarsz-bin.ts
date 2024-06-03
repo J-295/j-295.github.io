@@ -74,6 +74,15 @@ async function handleInput() {
             const content = await decryptString(f.content, key);
             contentPre.innerText = content;
         }
+        // on right click
+        anchor.oncontextmenu = async (ev) => {
+            ev.preventDefault();
+            navigator.clipboard.writeText(await decryptString(f.content, key));
+            anchor.innerHTML = "<span style=\"color:lime;\">Copied to clipboard!</span>";
+            setTimeout(() => {
+                    anchor.textContent = name;
+            }, 1000);
+        }
         sidenavDiv.appendChild(anchor);
     }
 }

@@ -53,6 +53,15 @@ function handleInput() {
                 const content = yield decryptString(f.content, key);
                 contentPre.innerText = content;
             });
+            // on right click
+            anchor.oncontextmenu = (ev) => __awaiter(this, void 0, void 0, function* () {
+                ev.preventDefault();
+                navigator.clipboard.writeText(yield decryptString(f.content, key));
+                anchor.innerHTML = "<span style=\"color:lime;\">Copied to clipboard!</span>";
+                setTimeout(() => {
+                    anchor.textContent = name;
+                }, 1000);
+            });
             sidenavDiv.appendChild(anchor);
         }
     });
