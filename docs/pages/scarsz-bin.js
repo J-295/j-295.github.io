@@ -22,15 +22,19 @@ const contentPre = document.getElementById("content");
 const binUrlButton = document.getElementById("bin-url-button");
 const binUrlInput = document.getElementById("bin-url-input");
 const initialContentDiv = document.getElementById("initial-content-div");
-binUrlButton.onclick = handleInput;
-binUrlInput.onkeydown = (ev) => {
-    if (ev.key === "Enter")
-        handleInput();
-};
-function handleInput() {
+if (binUrlPattern.test(location.hash.slice(1))) {
+    handleInput(location.hash.slice(1));
+}
+else {
+    binUrlButton.onclick = () => handleInput(binUrlInput.value);
+    binUrlInput.onkeydown = (ev) => {
+        if (ev.key === "Enter")
+            handleInput(binUrlInput.value);
+    };
+}
+function handleInput(url) {
     return __awaiter(this, void 0, void 0, function* () {
-        // get url, extract uuid/key
-        const url = binUrlInput.value;
+        // extract uuid/key
         const match = url.match(binUrlPattern);
         if (!match)
             return window.alert("Invalid bin.scarsz.me URL!");

@@ -44,14 +44,17 @@ const binUrlButton = document.getElementById("bin-url-button") as HTMLButtonElem
 const binUrlInput = document.getElementById("bin-url-input") as HTMLInputElement;
 const initialContentDiv = document.getElementById("initial-content-div") as HTMLDivElement;
 
-binUrlButton.onclick = handleInput;
-binUrlInput.onkeydown = (ev) => {
-    if (ev.key === "Enter") handleInput();
-};
+if (binUrlPattern.test(location.hash.slice(1))) {
+    handleInput(location.hash.slice(1));
+} else {
+    binUrlButton.onclick = () => handleInput(binUrlInput.value);
+    binUrlInput.onkeydown = (ev) => {
+        if (ev.key === "Enter") handleInput(binUrlInput.value);
+    };
+}
 
-async function handleInput() {
-    // get url, extract uuid/key
-    const url = binUrlInput.value;
+async function handleInput(url: string) {
+    // extract uuid/key
     const match = url.match(binUrlPattern);
     if (!match) return window.alert("Invalid bin.scarsz.me URL!");
     const { [1]: uuid, [2]: key } = match;
@@ -80,7 +83,7 @@ async function handleInput() {
             navigator.clipboard.writeText(await decryptString(f.content, key));
             anchor.innerHTML = "<span style=\"color:lime;\">Copied to clipboard!</span>";
             setTimeout(() => {
-                    anchor.textContent = name;
+                anchor.textContent = name;
             }, 1000);
         }
         sidenavDiv.appendChild(anchor);
