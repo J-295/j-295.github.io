@@ -6,6 +6,6 @@
         "webpack-cli": "^5.1.4"
     },
     "dependencies": {
-        "scarsz-bin": "^1.0.2"
+        "scarsz-bin": "^1.0.3"
     }
 }
