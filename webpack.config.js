@@ -2,7 +2,10 @@ const path = require("path");
 
 module.exports = {
     mode: "production",
-    entry: "./src/pages/scarsz-bin.ts",
+    entry: {
+        "scarsz-bin": "./src/pages/scarsz-bin.ts",
+        "dsrv-debug": "./src/pages/dsrv-debug.ts"
+    },
     module: {
         rules: [
             {
@@ -16,7 +19,7 @@ module.exports = {
         extensions: [".tsx", ".ts", ".js"],
     },
     output: {
-        filename: "scarsz-bin.js",
+        filename: "[name].js",
         path: path.resolve(__dirname, "docs", "pages"),
     },
 };
