@@ -4,7 +4,7 @@ p {
     margin: 0;
 }
 
-.ribbon {
+div.ribbon {
     background-color: #2d2d2d;
     text-align: center;
     padding: 10px;
@@ -14,16 +14,16 @@ textarea {
     resize: none;
     background-color: #414141;
     width: 100%;
-    color: #ffffff;
+    color: white;
     font-family: monospace;
     font-size: large;
 }
 
-.btn1 {
+button.btn1 {
     margin-bottom: 5px;
     margin-top: 15px;
     background-color: #43ff4d;
-    color: #000000;
+    color: black;
     border-radius: 8px;
     border: none;
     padding: 3px;
@@ -31,6 +31,6 @@ textarea {
     transition-duration: 0.4s;
 }
 
-.btn1:hover {
-    background-color: #00da0b;
+button.btn1:hover {
+    background-color: #009507;
 }
