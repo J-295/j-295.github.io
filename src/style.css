@@ -2,16 +2,20 @@ body {
     background-color: #202020;
 }
 
-h1, p, pre {
+h1,
+p,
+pre {
     color: #ffffff;
 }
 
 a {
     cursor: pointer;
 }
+
 a:link {
     color: #24cde3;
 }
+
 a:visited {
     color: #db5ce7;
 }
@@ -20,6 +24,7 @@ h1 {
     font-family: "Lucida Console", "Courier New", monospace;
 }
 
-p, a {
-	font-family: Arial, Helvetica, sans-serif;
+p,
+a {
+    font-family: Arial, Helvetica, sans-serif;
 }

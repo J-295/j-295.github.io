@@ -1,33 +1,36 @@
-body, h1, p {
-	margin: 0;
+body,
+h1,
+p {
+    margin: 0;
 }
 
 .ribbon {
-	background-color: #2d2d2d;
-	text-align: center;
-	padding: 10px;
+    background-color: #2d2d2d;
+    text-align: center;
+    padding: 10px;
 }
 
 textarea {
-	resize: none;
-	background-color: #414141;
-	width: 100%;
-	color: #ffffff;
-	font-family: monospace;
-	font-size: large;
+    resize: none;
+    background-color: #414141;
+    width: 100%;
+    color: #ffffff;
+    font-family: monospace;
+    font-size: large;
 }
 
 .btn1 {
-	margin-bottom: 5px;
-	margin-top: 15px;
-	background-color: #43ff4d;
-	color: #000000;
-	border-radius: 8px;
-	border: none;
-	padding: 3px;
-	cursor: pointer;
-	transition-duration: 0.4s;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    background-color: #43ff4d;
+    color: #000000;
+    border-radius: 8px;
+    border: none;
+    padding: 3px;
+    cursor: pointer;
+    transition-duration: 0.4s;
 }
+
 .btn1:hover {
-	background-color: #00da0b;
+    background-color: #00da0b;
 }
